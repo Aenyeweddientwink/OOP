@@ -1,19 +1,16 @@
 package io.github.aenyeweddientwink;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-
 import java.util.Arrays;
 import java.util.Random;
-
 import org.junit.jupiter.api.Test;
 
 /**
- * Class with Tests for Heapsort class
+ * Class with Tests for Heapsort class.
  */
 public class HeapsortTest {
-
     @Test
-    void testEmpty(){
+    void testEmpty() {
         int[] arr = {};
         int[] result = {};
         Heapsort.sort(arr);
@@ -21,13 +18,12 @@ public class HeapsortTest {
     }
 
     @Test
-    void testSingleElem(){
+    void testSingleElem() {
         int[] arr ={1};
         int[] result = {1};
         Heapsort.sort(arr);
         assertArrayEquals(result,arr);
     }
-
     @Test
     void testSorted(){
         int[] arr = {1,2,3};
@@ -35,7 +31,6 @@ public class HeapsortTest {
         Heapsort.sort(arr);
         assertArrayEquals(result,arr);
     }
-
     @Test
     void testReverse(){
         int[] arr = {5,4,3,2,1};
@@ -43,9 +38,6 @@ public class HeapsortTest {
         Heapsort.sort(arr);
         assertArrayEquals(result,arr);
     }
-
-
-
     @Test
     void testRandomNumbers(){
         Random random = new Random();
