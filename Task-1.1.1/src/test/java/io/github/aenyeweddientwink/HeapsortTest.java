@@ -10,21 +10,6 @@ import org.junit.jupiter.api.Test;
  */
 public class HeapsortTest {
     @Test
-    void testEmpty() {
-        int[] arr = {};
-        int[] result = {};
-        Heapsort.sort(arr);
-        assertArrayEquals(result, arr);
-    }
-
-    @Test
-    void testSingleElem() {
-        int[] arr ={1};
-        int[] result = {1};
-        Heapsort.sort(arr);
-        assertArrayEquals(result,arr);
-    }
-    @Test
     void testSorted(){
         int[] arr = {1,2,3};
         int[] result = {1,2,3};

@@ -17,7 +17,7 @@ public class Heapsort
      */
     public static void sort(int[] arr){
         int n = arr.length;
-        //building max heap
+        //building max heap, n/2-1 is index of last non-leaf node
         int i = n/2 -1;
         while (i>=0)
         {
@@ -43,17 +43,14 @@ public class Heapsort
         int l = i*2 + 1; // left child
         int r = i*2 + 2; // right child
         int maxindex = i;
-
         if ((l <n) && (arr[l] > arr[maxindex]))
             maxindex = l;
         if ((r < n) && (arr[r] > arr[maxindex]))
             maxindex = r;
-
         if (i!= maxindex){
             int temp = arr[i];
             arr[i] = arr[maxindex];
             arr[maxindex] = temp;
-
             heapify(arr,maxindex,n);
         }
     }
