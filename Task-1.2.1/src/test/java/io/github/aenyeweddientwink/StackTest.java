@@ -6,6 +6,10 @@ import java.util.EmptyStackException;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
+/**
+ * Tests for the Stack class
+ */
 public class StackTest {
 
     @Test
