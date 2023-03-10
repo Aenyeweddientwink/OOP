@@ -12,7 +12,7 @@ public class SubstringLooker {
     /**
      * This method returns a prefix function for the given sample
      * @param sample Size should be bigger than 0
-     * @return
+     * @return a prefix function as an array
      */
     static int[] prefixFunction(String sample){
         int length =sample.length();
@@ -35,7 +35,7 @@ public class SubstringLooker {
      * This method searches for a substring in the text
      * @param text Text
      * @param substring Substring which is to be founded
-     * @return
+     * @return an array list of indexes where the substring is found
      */
     public static ArrayList<Integer> Lookforsubstring(String text, String substring){
         ArrayList<Integer> result = new ArrayList<>();
