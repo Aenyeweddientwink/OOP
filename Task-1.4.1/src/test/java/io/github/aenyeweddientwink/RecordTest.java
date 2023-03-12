@@ -26,6 +26,8 @@ public class RecordTest {
     }
     @Test void RecordBookTest1(){
         RecordBook Book1 = new RecordBook("Petr","Petrov",1);
+        Record Record1 = new Record("English","Pavlov",5,1);
+        Book1.addRecord(Record1);
         Book1.addRecord("Math","Ivanov",5,1);
         Book1.addRecord("PE","Morozov",5,1);
         Book1.changeSemester(2);
