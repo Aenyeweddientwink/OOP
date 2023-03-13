@@ -45,4 +45,13 @@ public class CalculatorTest {
         assertEquals(2.0,Calculator.calculate(expression5));
         assertEquals(2.0,Calculator.calculate(expression6));
     }
+
+    @Test
+    void logTest(){
+        List<String> expression1= new ArrayList<>(Arrays.asList("log","1","1"));
+        List<String> expression2= new ArrayList<>(Arrays.asList("log","1","0"));
+        assertThrows(IllegalArgumentException.class,()->Calculator.calculate(expression1));
+        assertThrows(IllegalArgumentException.class,()->Calculator.calculate(expression2));
+
+    }
 }
