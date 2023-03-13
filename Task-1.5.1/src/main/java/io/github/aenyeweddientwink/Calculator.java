@@ -9,7 +9,11 @@ import java.util.Stack;
  * Class for calculating mathematical expressions
  */
 public class Calculator {
-
+    /**
+     * calcucates expression
+     * @param expression expression
+     * @return Result of calculation of the expression
+     */
     public static Double calculate(List<String> expression){
         OperationCreator operations = new OperationCreator();
         Stack<String> stack = new Stack<>();
