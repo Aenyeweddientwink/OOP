@@ -3,23 +3,32 @@ package io.github.aenyeweddientwink;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class for a Record Book. It contains credits and marks of a certain student
+ * Attributes:
+ *  Name - name of the student
+ *  Surname - surname of the student
+ *  Records - list of records of the student
+ *  Semester - current semester
+ *  QualificationScore - score of the qualification work
+ */
 public class RecordBook {
     private final String Name;
     private final String Surname;
     private final List<Record> records;
     private int semester;
 
+    private int qualificationScore;
+
     /**
      * Creation of a Record Book
-     * @param Name Name of the student
-     * @param Surname Surname of the student
-     * @param semester number of semester
      */
     public RecordBook(String Name, String Surname, int semester){
         this.Name = Name;
         this.Surname = Surname;
         this.semester = semester;
         this.records = new ArrayList<>();
+        this.qualificationScore = -1;
     }
 
     public void changeSemester(int newsemester){
@@ -30,12 +39,24 @@ public class RecordBook {
         return this.semester;
     }
 
+    public void setQualificationScore(int qualificationScore){
+        this.qualificationScore = qualificationScore;
+    }
+
+    public int getQualificationScore(int qualificationScore){
+        return this.qualificationScore;
+    }
+
     public void addRecord(Record Record1){
         records.add(Record1);
     }
 
     public void addRecord(String subject, String teacher, int mark, int semester){
         records.add(new Record(subject,teacher,mark,semester));
+    }
+
+    public void addRecord(String subject, String teacher, Record.Credit credit, int semester){
+        records.add(new Record(subject,teacher,credit,semester));
     }
 
     public List<Record> getRecords() {
@@ -49,7 +70,9 @@ public class RecordBook {
     public float AlltimeaverageMark(){
         float result = 0F;
         for (Record record: records){
-            result+= (((float) record.mark) / (float) records.size());
+            if (record.getCredit() == Record.Credit.SCORED) {
+                result += (((float) record.getMark()) / (float) records.size());
+            }
         }
         return result;
     }
@@ -63,8 +86,8 @@ public class RecordBook {
         float result = 0F;
         int numberofrecords = 0;
         for (Record record : records){
-            if (record.semester == semester){
-                result += (float) record.mark;
+            if (record.getSemester() == semester && record.getCredit() == Record.Credit.SCORED){
+                result += (float) record.getMark();
                 numberofrecords +=1;
             }
         }
@@ -79,7 +102,7 @@ public class RecordBook {
     public boolean isAbletofinishwithHonors(){
         // no 3s at all
         for (Record record : records){
-            if (record.mark == 3){
+            if (record.getMark() == 3){
                 return false;
             }
         }
@@ -90,12 +113,16 @@ public class RecordBook {
         }
 
         //final record must be 5
-        if (records.get(records.size()-1).mark !=5) {
+        if (this.qualificationScore != 5) {
             return false;
         }
         return true;
     }
 
+    /**
+     * Determines if the student can get an increased Stipend( has to have 5.0 average mark in the previous semester)
+     * @return true if yes, false if no
+     */
     public boolean isAbletogetIncreasedStipend(){
         if (this.semester == 1){
             return false;

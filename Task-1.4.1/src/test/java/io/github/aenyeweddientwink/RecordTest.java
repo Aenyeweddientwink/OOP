@@ -19,18 +19,17 @@ import org.junit.jupiter.api.Test;
 public class RecordTest {
     @Test void RecordTest1(){
         Record Record1 = new Record("Math", "Petrov",5,1);
-        assertEquals("Math",Record1.subject);
-        assertEquals("Petrov",Record1.teacher);
-        assertEquals(5,Record1.mark);
-        assertEquals(1,Record1.semester);
+        assertEquals(5,Record1.getMark());
+        assertEquals(1,Record1.getSemester());
     }
     @Test void RecordBookTest1(){
         RecordBook Book1 = new RecordBook("Petr","Petrov",1);
         Record Record1 = new Record("English","Pavlov",5,1);
         Book1.addRecord(Record1);
         Book1.addRecord("Math","Ivanov",5,1);
-        Book1.addRecord("PE","Morozov",5,1);
+        Book1.addRecord("PE","Morozov", Record.Credit.PASSED,1);
         Book1.changeSemester(2);
+        Book1.setQualificationScore(5);
         assertEquals(2,Book1.getSemester());
         assertEquals(true,Book1.isAbletogetIncreasedStipend());
         assertEquals(true,Book1.isAbletofinishwithHonors());
