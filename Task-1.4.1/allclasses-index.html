@@ -27,6 +27,12 @@
     catch(err) {
     }
 //-->
+var data = {"i0":2,"i1":4,"i2":2};
+var tabs = {65535:["t0","All Classes"],2:["t2","Class Summary"],4:["t3","Enum Summary"]};
+var altColor = "altColor";
+var rowColor = "rowColor";
+var tableTab = "tableTab";
+var activeTableTab = "activeTableTab";
 var pathtoroot = "./";
 var useModuleDirectories = true;
 loadScripts(document, 'script');</script>
@@ -98,7 +104,7 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <ul class="blockList">
 <li class="blockList">
 <table class="typeSummary">
-<caption><span>Class Summary</span><span class="tabEnd">&nbsp;</span></caption>
+<caption><span id="t0" class="activeTableTab"><span>All Classes</span><span class="tabEnd">&nbsp;</span></span><span id="t2" class="tableTab"><span><a href="javascript:show(2);">Class Summary</a></span><span class="tabEnd">&nbsp;</span></span><span id="t3" class="tableTab"><span><a href="javascript:show(4);">Enum Summary</a></span><span class="tabEnd">&nbsp;</span></span></caption>
 <tr>
 <th class="colFirst" scope="col">Class</th>
 <th class="colLast" scope="col">Description</th>
@@ -106,12 +112,28 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <tr id="i0" class="altColor">
 <td class="colFirst"><a href="io/github/aenyeweddientwink/Record.html" title="class in io.github.aenyeweddientwink">Record</a></td>
 <th class="colLast" scope="row">
-<div class="block">Record class</div>
+<div class="block">Record class has attributes:
+ name of the subject
+ name of the teacher
+ mark:
+             5 - Excellent
+             4 - Good
+             3 - Satisfactory
+ semester -  number of the semester
+ credit - has values PASSED, FAILED, SCORED.</div>
 </th>
 </tr>
 <tr id="i1" class="rowColor">
+<td class="colFirst"><a href="io/github/aenyeweddientwink/Record.Credit.html" title="enum in io.github.aenyeweddientwink">Record.Credit</a></td>
+<th class="colLast" scope="row">
+<div class="block">pass or fail type of score called CREDIT</div>
+</th>
+</tr>
+<tr id="i2" class="altColor">
 <td class="colFirst"><a href="io/github/aenyeweddientwink/RecordBook.html" title="class in io.github.aenyeweddientwink">RecordBook</a></td>
-<th class="colLast" scope="row">&nbsp;</th>
+<th class="colLast" scope="row">
+<div class="block">Class for a Record Book.</div>
+</th>
 </tr>
 </table>
 </li>

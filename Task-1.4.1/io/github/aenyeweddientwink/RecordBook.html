@@ -27,7 +27,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -132,6 +132,13 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 <hr>
 <pre>public class <span class="typeNameLabel">RecordBook</span>
 extends java.lang.Object</pre>
+<div class="block">Class for a Record Book. It contains credits and marks of a certain student
+ Attributes:
+  Name - name of the student
+  Surname - surname of the student
+  Records - list of records of the student
+  Semester - current semester
+  QualificationScore - score of the qualification work</div>
 </li>
 </ul>
 </div>
@@ -191,45 +198,65 @@ extends java.lang.Object</pre>
 <td class="colLast">&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#addRecord(java.lang.String,java.lang.String,io.github.aenyeweddientwink.Record.Credit,int)">addRecord</a></span>&#8203;(java.lang.String&nbsp;subject,
+         java.lang.String&nbsp;teacher,
+         <a href="Record.Credit.html" title="enum in io.github.aenyeweddientwink">Record.Credit</a>&nbsp;credit,
+         int&nbsp;semester)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i3" class="rowColor">
 <td class="colFirst"><code>float</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#AlltimeaverageMark()">AlltimeaverageMark</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Method</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#changeSemester(int)">changeSemester</a></span>&#8203;(int&nbsp;newsemester)</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i5" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getQualificationScore(int)">getQualificationScore</a></span>&#8203;(int&nbsp;qualificationScore)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>java.util.List&lt;<a href="Record.html" title="class in io.github.aenyeweddientwink">Record</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRecords()">getRecords</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSemester()">getSemester</a></span>()</code></th>
 <td class="colLast">&nbsp;</td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isAbletofinishwithHonors()">isAbletofinishwithHonors</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Method returns if a student is able to finish with honors</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isAbletogetIncreasedStipend()">isAbletogetIncreasedStipend</a></span>()</code></th>
-<td class="colLast">&nbsp;</td>
+<td class="colLast">
+<div class="block">Determines if the student can get an increased Stipend( has to have 5.0 average mark in the previous semester)</div>
+</td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>float</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#SemesterAverageMark(int)">SemesterAverageMark</a></span>&#8203;(int&nbsp;semester)</code></th>
 <td class="colLast">
 <div class="block">Method</div>
 </td>
+</tr>
+<tr id="i11" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setQualificationScore(int)">setQualificationScore</a></span>&#8203;(int&nbsp;qualificationScore)</code></th>
+<td class="colLast">&nbsp;</td>
 </tr>
 </table>
 <ul class="blockList">
@@ -265,12 +292,6 @@ extends java.lang.Object</pre>
                   java.lang.String&nbsp;Surname,
                   int&nbsp;semester)</pre>
 <div class="block">Creation of a Record Book</div>
-<dl>
-<dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>Name</code> - Name of the student</dd>
-<dd><code>Surname</code> - Surname of the student</dd>
-<dd><code>semester</code> - number of semester</dd>
-</dl>
 </li>
 </ul>
 </li>
@@ -301,6 +322,24 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public&nbsp;int&nbsp;getSemester()</pre>
 </li>
 </ul>
+<a id="setQualificationScore(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setQualificationScore</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setQualificationScore&#8203;(int&nbsp;qualificationScore)</pre>
+</li>
+</ul>
+<a id="getQualificationScore(int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getQualificationScore</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getQualificationScore&#8203;(int&nbsp;qualificationScore)</pre>
+</li>
+</ul>
 <a id="addRecord(io.github.aenyeweddientwink.Record)">
 <!--   -->
 </a>
@@ -319,6 +358,18 @@ extends java.lang.Object</pre>
 <pre class="methodSignature">public&nbsp;void&nbsp;addRecord&#8203;(java.lang.String&nbsp;subject,
                       java.lang.String&nbsp;teacher,
                       int&nbsp;mark,
+                      int&nbsp;semester)</pre>
+</li>
+</ul>
+<a id="addRecord(java.lang.String,java.lang.String,io.github.aenyeweddientwink.Record.Credit,int)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>addRecord</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;addRecord&#8203;(java.lang.String&nbsp;subject,
+                      java.lang.String&nbsp;teacher,
+                      <a href="Record.Credit.html" title="enum in io.github.aenyeweddientwink">Record.Credit</a>&nbsp;credit,
                       int&nbsp;semester)</pre>
 </li>
 </ul>
@@ -382,6 +433,11 @@ extends java.lang.Object</pre>
 <li class="blockList">
 <h4>isAbletogetIncreasedStipend</h4>
 <pre class="methodSignature">public&nbsp;boolean&nbsp;isAbletogetIncreasedStipend()</pre>
+<div class="block">Determines if the student can get an increased Stipend( has to have 5.0 average mark in the previous semester)</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>true if yes, false if no</dd>
+</dl>
 </li>
 </ul>
 </li>
