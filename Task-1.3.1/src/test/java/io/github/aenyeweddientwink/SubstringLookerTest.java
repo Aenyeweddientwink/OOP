@@ -46,5 +46,15 @@ public class SubstringLookerTest {
         in.close();
     }
 
+    @Test
+    public void test4() throws IOException{
+        String path = "/Test4.txt";
+        InputStream in = SubstringLooker.class.getResourceAsStream(path);
+        List<Integer> indexes = SubstringLooker.search("fieow", in);
+        assertEquals(5,indexes.size());
+        List<Integer> test = List.of(231,560,889,1218,1547);
+        assertEquals(test, indexes);
+        in.close();
+    }
 
 }
