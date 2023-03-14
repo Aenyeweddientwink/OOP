@@ -260,7 +260,9 @@ implements <a href="../Operation.html" title="interface in io.github.aenyeweddie
 <ul class="blockListLast">
 <li class="blockList">
 <h4>apply</h4>
-<pre class="methodSignature">public&nbsp;java.lang.Double&nbsp;apply&#8203;(java.lang.Double...&nbsp;args)</pre>
+<pre class="methodSignature">public&nbsp;java.lang.Double&nbsp;apply&#8203;(java.lang.Double...&nbsp;args)
+                       throws java.lang.IllegalArgumentException,
+                              java.lang.NullPointerException</pre>
 <div class="block"><span class="descfrmTypeLabel">Description copied from interface:&nbsp;<code><a href="../Operation.html#apply(java.lang.Double...)">Operation</a></code></span></div>
 <div class="block">applies an operation to it's arguments</div>
 <dl>
@@ -269,6 +271,9 @@ implements <a href="../Operation.html" title="interface in io.github.aenyeweddie
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>args</code> - arguments of an operation</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.IllegalArgumentException</code></dd>
+<dd><code>java.lang.NullPointerException</code></dd>
 </dl>
 </li>
 </ul>
