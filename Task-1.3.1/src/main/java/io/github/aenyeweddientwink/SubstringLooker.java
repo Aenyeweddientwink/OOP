@@ -1,68 +1,107 @@
 package io.github.aenyeweddientwink;
 
-import java.io.FileInputStream;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.io.InputStream;
+import java.util.List;
+
+import static java.lang.Math.max;
+
 /**
  * This class finds a substring in the text
  */
 public class SubstringLooker {
-
-
     /**
-     * This method returns a prefix function for the given sample
-     * @param sample Size should be bigger than 0
-     * @return a prefix function as an array
+     * Searches the given substring in the given file.
+     * For each line builds z function and adds substring occurrences to an array of indexes.
+     *
+     * @param substring substring to look for
+     * @param in input file
+     * @return list of all the occurrences of a given substring
      */
-    static int[] prefixFunction(String sample){
-        int length =sample.length();
-        int[] table = new int[length];
-        if (length ==1){
-            table[0] = 0;
-            return table;
+    public static List<Integer> search(String substring, InputStream in)
+            throws NullPointerException, IOException {
+        if (substring == null || in == null) {
+            throw new NullPointerException();
         }
-        for (int i = 1; i < length; i++){
-            int j = 0;
-            while (i+j < length && sample.charAt(j) == sample.charAt(i+j)){
-                table[i+j] = Math.max(table[i+j], j+1);
-                j++;
+        int len = substring.length();
+
+        if (len == 0) {
+            return null;
+        }
+
+        BufferedReader reader = new BufferedReader(
+                new InputStreamReader(in, StandardCharsets.UTF_8));
+        int[] zline = zfunction(substring.toCharArray(),substring.toCharArray(), new int [len], len);
+        int pos = max(len, 512);
+        char[] current = new char[pos];
+        int offset = 0;
+        int f = reader.read(current, offset, pos);
+        int[] zz = zfunction(current, substring.toCharArray(), zline, f);
+
+        List<Integer> indexes = new ArrayList<>();
+        int cnt = 0;
+        for (int i = 0; i < zz.length; i++) {
+            if (zz[i] == len) {
+                indexes.add(cnt, i);
+                cnt++;
             }
         }
-        return table;
+
+        offset += pos;
+        char[] previous = new char[len];
+        System.arraycopy(current, current.length - len, previous, 0, len);
+        f = reader.read(current, 0, pos);
+        char[] str;
+        while (f > 0) {
+            str = (String.valueOf(previous) + String.valueOf(current)).toCharArray();
+            zz = zfunction(str, substring.toCharArray(), zline, f);
+            System.arraycopy(current, current.length - len, previous, 0, len);
+
+            for (int i = 0; i < zz.length; i++) {
+                if (zz[i] == len && !indexes.contains(i + offset - len)) {
+                    indexes.add(cnt, i + offset - len);
+                    cnt++;
+                }
+            }
+
+            offset += pos;
+            f = reader.read(current, 0, pos);
+        }
+        return indexes;
     }
 
     /**
-     * This method searches for a substring in the text
-     * @param text Text
-     * @param substring Substring which is to be founded
-     * @return an array list of indexes where the substring is found
+     * Builds the z function of a line using z function of the given substring.
+     *
+     * @param line line to build z function of
+     * @param substr substring to look for
+     * @param zline z function of a substring
+     * @param n number of characters read
+     * @return array of integers representing z function of a line
      */
-    public static ArrayList<Integer> Lookforsubstring(String text, String substring){
-        ArrayList<Integer> result = new ArrayList<>();
-        int[] prefixTable = prefixFunction(substring);
-        int j = 0;
-        int i =0;
-        int textLength = text.length();
-        int substringLength = substring.length();
-        while (i < textLength){
-            if (substring.charAt(j) == text.charAt(i)){
-                j++;
-                i++;
+    private static int[] zfunction(char[] line, char[] substr, int[] zline, int n) {
+        int[] result = new int[line.length];
+        int l = -1;
+        int r = -1;
+        for (int i = 0; i < n; i++) {
+            if (i < r) {
+                result[i] = zline[i - l];
+            } else {
+                result[i] = 0;
             }
-            if (j == substringLength){
-                result.add(i-j);
-                j=prefixTable[j-1];
+            // zz[i] < zline.length
+            while (result[i] < substr.length
+                    && i + result[i] < line.length && substr[result[i]] == line[i + result[i]]) {
+                result[i]++;
             }
-            else if (i <textLength && substring.charAt(j) != text.charAt(i)){
-                if (j!=0){
-                    j = prefixTable[j-1];
-                }
-                else {
-                    i = i+1;
-                }
+            if (i + result[i] > r) {
+                l = i;
+                r = i + result[i];
             }
         }
         return result;
     }
+
 
 }
