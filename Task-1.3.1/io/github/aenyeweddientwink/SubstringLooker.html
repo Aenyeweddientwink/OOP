@@ -175,11 +175,11 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code>static java.util.ArrayList&lt;java.lang.Integer&gt;</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#Lookforsubstring(java.lang.String,java.lang.String)">Lookforsubstring</a></span>&#8203;(java.lang.String&nbsp;text,
-                java.lang.String&nbsp;substring)</code></th>
+<td class="colFirst"><code>static java.util.List&lt;java.lang.Integer&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#search(java.lang.String,java.io.InputStream)">search</a></span>&#8203;(java.lang.String&nbsp;substring,
+      java.io.InputStream&nbsp;in)</code></th>
 <td class="colLast">
-<div class="block">This method searches for a substring in the text</div>
+<div class="block">Searches the given substring in the given file.</div>
 </td>
 </tr>
 </table>
@@ -225,21 +225,27 @@ extends java.lang.Object</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
-<a id="Lookforsubstring(java.lang.String,java.lang.String)">
+<a id="search(java.lang.String,java.io.InputStream)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
-<h4>Lookforsubstring</h4>
-<pre class="methodSignature">public static&nbsp;java.util.ArrayList&lt;java.lang.Integer&gt;&nbsp;Lookforsubstring&#8203;(java.lang.String&nbsp;text,
-                                                                      java.lang.String&nbsp;substring)</pre>
-<div class="block">This method searches for a substring in the text</div>
+<h4>search</h4>
+<pre class="methodSignature">public static&nbsp;java.util.List&lt;java.lang.Integer&gt;&nbsp;search&#8203;(java.lang.String&nbsp;substring,
+                                                       java.io.InputStream&nbsp;in)
+                                                throws java.lang.NullPointerException,
+                                                       java.io.IOException</pre>
+<div class="block">Searches the given substring in the given file.
+ For each line builds z function and adds substring occurrences to an array of indexes.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>text</code> - Text</dd>
-<dd><code>substring</code> - Substring which is to be founded</dd>
+<dd><code>substring</code> - substring to look for</dd>
+<dd><code>in</code> - input file</dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>an array list of indexes where the substring is found</dd>
+<dd>list of all the occurrences of a given substring</dd>
+<dt><span class="throwsLabel">Throws:</span></dt>
+<dd><code>java.lang.NullPointerException</code></dd>
+<dd><code>java.io.IOException</code></dd>
 </dl>
 </li>
 </ul>

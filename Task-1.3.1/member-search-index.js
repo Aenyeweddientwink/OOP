@@ -1,1 +1,1 @@
-memberSearchIndex = [{"p":"io.github.aenyeweddientwink","c":"SubstringLooker","l":"Lookforsubstring(String, String)","url":"Lookforsubstring(java.lang.String,java.lang.String)"},{"p":"io.github.aenyeweddientwink","c":"SubstringLooker","l":"SubstringLooker()","url":"%3Cinit%3E()"}]
+memberSearchIndex = [{"p":"io.github.aenyeweddientwink","c":"SubstringLooker","l":"search(String, InputStream)","url":"search(java.lang.String,java.io.InputStream)"},{"p":"io.github.aenyeweddientwink","c":"SubstringLooker","l":"SubstringLooker()","url":"%3Cinit%3E()"}]
