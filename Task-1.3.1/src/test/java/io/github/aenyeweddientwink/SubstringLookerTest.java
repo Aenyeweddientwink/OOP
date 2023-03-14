@@ -32,6 +32,8 @@ public class SubstringLookerTest {
         assertEquals(3, indexes.size());
         assertEquals(test, indexes);
         in.close();
+        InputStream in2 = in;
+        assertThrows(IOException.class, () -> SubstringLooker.search("dreams", in2));
     }
 
     @Test
