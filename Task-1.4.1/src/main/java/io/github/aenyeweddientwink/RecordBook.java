@@ -102,8 +102,10 @@ public class RecordBook {
     public boolean isAbletofinishwithHonors(){
         // no 3s at all
         for (Record record : records){
-            if (record.getMark() == 3){
-                return false;
+            if (record.getCredit() == Record.Credit.SCORED){
+                if (record.getMark() == 3){
+                    return false;
+                }
             }
         }
 

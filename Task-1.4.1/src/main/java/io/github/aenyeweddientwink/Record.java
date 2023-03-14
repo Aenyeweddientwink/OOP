@@ -17,10 +17,17 @@ package io.github.aenyeweddientwink;
 public class Record {
     private final String subject;
     private final String teacher;
-    private final int mark;
+    private int mark;
     private final int semester;
     private final Credit credit;
 
+    /**
+     * constructor of a Record
+     * @param subject
+     * @param teacher
+     * @param mark
+     * @param semester
+     */
     public Record(String subject, String teacher, int mark, int semester){
         this.subject = subject;
         this.teacher = teacher;
@@ -29,10 +36,16 @@ public class Record {
         this.semester = semester;
     }
 
+    /**
+     * constructor of a Record
+     * @param subject
+     * @param teacher
+     * @param credit
+     * @param semester
+     */
     public Record(String subject, String teacher, Credit credit, int semester){
         this.subject = subject;
         this.teacher = teacher;
-        this.mark = -1;
         this.credit = credit;
         this.semester = semester;
     }
@@ -41,7 +54,10 @@ public class Record {
         return this.semester;
     }
 
-    public int getMark(){
+    public int getMark() throws NullPointerException{
+        if (this.credit != Credit.SCORED){
+            throw new NullPointerException("this is a credit, not a mark");
+        }
         return this.mark;
     }
 
