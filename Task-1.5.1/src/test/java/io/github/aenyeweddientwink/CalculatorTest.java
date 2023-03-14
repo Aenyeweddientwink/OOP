@@ -17,7 +17,7 @@ public class CalculatorTest {
     @Test
     void simpleTest(){
         List<String> expression1= new ArrayList<>(Arrays.asList("1"));
-        List<String> expression2 = new ArrayList<>(Arrays.asList("+","1","1"));
+        List<String> expression2 = new ArrayList<>(Arrays.asList("+","sin","1"));
         List<String> expression3 = new ArrayList<>(Arrays.asList("-","1","1"));
         List<String> expression4 = new ArrayList<>(Arrays.asList("*","2","2"));
         List<String> expression5 = new ArrayList<>(Arrays.asList("/","3","3"));
