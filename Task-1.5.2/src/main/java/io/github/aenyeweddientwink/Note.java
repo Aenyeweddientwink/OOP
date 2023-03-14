@@ -1,5 +1,7 @@
 package io.github.aenyeweddientwink;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDateTime;
 /**
  * Class Note, a basic Note in a diary
@@ -9,8 +11,8 @@ import java.time.LocalDateTime;
  *  Text - Text of the note
  */
 public class Note {
-
-    private final String timestamp;
+    @JsonFormat(pattern = "dd.MM.yyyy HH:mm", timezone = "VST")
+    private final LocalDateTime timestamp;
     private final String title;
     private final String text;
 
@@ -20,9 +22,9 @@ public class Note {
      * @param text Text of the note
      * @throws NullPointerException
      */
-    public Note(String title, String text, String timestamp) throws  NullPointerException{
+    public Note(String title, String text,LocalDateTime timestamp) throws  NullPointerException{
         if ((title ==null) || (text == null) || (timestamp == null)){
-            throw new NullPointerException("Title, text and timestamp must be non-null");
+            throw new NullPointerException("Title and text and timestamp must be non-null");
         }
         this.title = title;
         this.text = text;
@@ -42,7 +44,7 @@ public class Note {
         return (this.text);
     }
 
-    public String getTimestamp(){
+    public LocalDateTime getTimestamp(){
         return (this.timestamp);
     }
 
