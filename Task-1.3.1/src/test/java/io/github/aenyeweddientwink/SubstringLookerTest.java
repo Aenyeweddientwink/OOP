@@ -32,7 +32,16 @@ public class SubstringLookerTest {
         assertEquals(3, indexes.size());
         assertEquals(test, indexes);
         in.close();
+    }
 
+    @Test
+    public void test3() throws IOException{
+        String path = "/Test3.txt";
+        InputStream in = SubstringLooker.class.getResourceAsStream(path);
+        List<Integer> indexes = SubstringLooker.search("kjhfqp", in);
+        List<Integer> test = List.of(9,53,59,109);
+        assertEquals(test, indexes);
+        in.close();
     }
 
 
