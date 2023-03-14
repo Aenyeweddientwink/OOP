@@ -30,7 +30,7 @@ public class Note {
         this.text = text;
         this.timestamp = timestamp;
     }
-    
+
     public String getTitle(){
         return (this.title);
     }
