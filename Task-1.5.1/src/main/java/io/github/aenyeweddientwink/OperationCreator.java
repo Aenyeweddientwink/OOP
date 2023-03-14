@@ -27,7 +27,7 @@ public class OperationCreator {
      * @param str string representation of an operation
      * @return operation
      */
-    public Operation getOperation(String str){
+    public Operation getOperation(String str) throws IllegalStateException{
         if (operators.containsKey(str)){
             return operators.get(str);
         }

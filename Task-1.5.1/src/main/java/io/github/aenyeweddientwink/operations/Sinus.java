@@ -12,7 +12,7 @@ public class Sinus implements Operation{
     }
 
     @Override
-    public Double apply (Double... args){
+    public Double apply (Double... args) {
         return (Math.sin(args[0]));
     }
 
