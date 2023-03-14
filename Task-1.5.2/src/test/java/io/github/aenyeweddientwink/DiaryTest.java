@@ -15,6 +15,13 @@ import java.util.List;
  */
 public class DiaryTest {
     @Test
+    public void noteTest(){
+        Note note = new Note("Hi","Bye",LocalDateTime.now());
+        Assertions.assertEquals("Hi",note.getTitle());
+        Assertions.assertEquals("Bye",note.getText());
+        Assertions.assertThrows(NullPointerException.class,()->new Note(null,null,null));
+    }
+    @Test
     public void simpleTest() throws IOException{
         Diary diary = new Diary();
         diary.addNote("Title", "Hello, World!");
