@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"io.github.aenyeweddientwink","l":"Record.Credit"},{"p":"io.github.aenyeweddientwink","l":"Record"},{"p":"io.github.aenyeweddientwink","l":"RecordBook"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"io.github.aenyeweddientwink","l":"Record.Credit"},{"p":"io.github.aenyeweddientwink","l":"Record"},{"p":"io.github.aenyeweddientwink","l":"RecordBook"},{"p":"io.github.aenyeweddientwink","l":"RecordComparator"},{"p":"io.github.aenyeweddientwink","l":"RecordWrapper"}]
