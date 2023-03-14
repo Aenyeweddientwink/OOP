@@ -61,6 +61,14 @@ public class Record {
         return this.mark;
     }
 
+    public String getSubject() {
+        return subject;
+    }
+
+    public String getTeacher() {
+        return teacher;
+    }
+
     public Credit getCredit(){
         return this.credit;
     }
@@ -70,4 +78,5 @@ public class Record {
     public enum Credit{
         PASSED, FAILED, SCORED
     }
+
 }

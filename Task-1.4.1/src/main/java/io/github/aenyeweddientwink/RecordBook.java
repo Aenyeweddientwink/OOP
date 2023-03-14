@@ -17,7 +17,6 @@ public class RecordBook {
     private final String Surname;
     private final List<Record> records;
     private int semester;
-
     private int qualificationScore;
 
     /**
@@ -67,7 +66,14 @@ public class RecordBook {
      * Method
      * @return All Time average mark
      */
-    public float AlltimeaverageMark(){
+    public double AlltimeaverageMark(){
+        return records
+                    .stream()
+                    .filter(x-> x.getCredit() == Record.Credit.SCORED)
+                    .mapToDouble(Record::getMark)
+                    .average()
+                    .orElse(0);
+        /*
         float result = 0F;
         for (Record record: records){
             if (record.getCredit() == Record.Credit.SCORED) {
@@ -75,6 +81,7 @@ public class RecordBook {
             }
         }
         return result;
+        */
     }
 
     /**
@@ -82,7 +89,15 @@ public class RecordBook {
      * @param semester number of the semester
      * @return Average mark in that semester
      */
-    public float SemesterAverageMark(int semester){
+    public double SemesterAverageMark(int semester){
+        return records
+                .stream()
+                .filter(x-> x.getCredit() == Record.Credit.SCORED)
+                .filter(x->x.getSemester() == semester)
+                .mapToDouble(Record::getMark)
+                .average()
+                .orElse(0);
+        /*
         float result = 0F;
         int numberofrecords = 0;
         for (Record record : records){
@@ -93,6 +108,7 @@ public class RecordBook {
         }
         result = result / (float) numberofrecords;
         return result;
+        */
     }
 
     /**
@@ -100,7 +116,61 @@ public class RecordBook {
      * @return true if yes false if no
      */
     public boolean isAbletofinishwithHonors(){
+        //Qual score
+        if (this.qualificationScore != 5){
+            return false;
+        }
         // no 3s at all
+        boolean hasthrees = records
+                .stream()
+                .filter(x->x.getCredit() == Record.Credit.SCORED)
+                .anyMatch(x->x.getMark() == 3);
+        if (hasthrees == true){
+            return false;
+        }
+        //count average of last marks
+        if (records.size() == 1){
+            if (records.get(0).getCredit() != Record.Credit.SCORED){
+                return false;
+            }
+            else{
+                if (records.get(0).getMark() == 5){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+        }
+        List<Record> recordscopy = records;
+        for (int i =0; i<recordscopy.size()-1;i++){
+            for (int j =i+1; j < recordscopy.size();j++){
+                if (recordscopy.get(i).getSubject() == recordscopy.get(j).getSubject()){
+                    if (recordscopy.get(i).getSemester() < recordscopy.get(j).getSemester()){
+                        recordscopy.remove(i);
+                    }
+                    else{
+                        recordscopy.remove(j);
+                    }
+                }
+            }
+
+        }
+        double average =recordscopy
+                .stream()
+                .filter(x -> x.getCredit()== Record.Credit.SCORED)
+                .mapToDouble(Record::getMark)
+                .average()
+                .orElse(0);
+        if (average < 4.75){
+            return false;
+        }
+        else{
+            return true;
+        }
+
+
+        /*
         for (Record record : records){
             if (record.getCredit() == Record.Credit.SCORED){
                 if (record.getMark() == 3){
@@ -108,8 +178,11 @@ public class RecordBook {
                 }
             }
         }
-
+        double averagemark = records
+                .stream()
+                .filter(x->x.getCredit()== Record.Credit.SCORED)
         //5s are 75% of marks for the last semester
+
         if (this.SemesterAverageMark(this.semester) < 4.75) {
             return false;
         }
@@ -119,6 +192,7 @@ public class RecordBook {
             return false;
         }
         return true;
+         */
     }
 
     /**

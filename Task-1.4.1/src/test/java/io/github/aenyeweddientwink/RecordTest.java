@@ -55,7 +55,24 @@ public class RecordTest {
         assertEquals(2,Mybook.getSemester());
         assertEquals(false,Mybook.isAbletogetIncreasedStipend());
         assertEquals(false,Mybook.isAbletofinishwithHonors());
-        assertEquals((float) 17/4, Mybook.SemesterAverageMark(1));
-        assertEquals((float) 33/8,Mybook.AlltimeaverageMark());
+        assertEquals((double) 17/4, Mybook.SemesterAverageMark(1));
+        assertEquals((double) 33/8,Mybook.AlltimeaverageMark());
+    }
+
+    @Test
+    public void FinishWithHonorsTest(){
+        RecordBook Book = new RecordBook("Timur","Ivanov",1);
+
+        Book.addRecord("Math","Ivanov",4,1);
+        Book.changeSemester(2);
+        Book.addRecord("Math","Ivanov",5,2);
+        Book.addRecord("PE","Ivanov", Record.Credit.PASSED,2);
+        Book.addRecord("IT","Petrov",4,2);
+        Book.changeSemester(3);
+        Book.addRecord("Russian","Fedorov",5,3);
+        Book.addRecord("English","Fedorova",5,3);
+        Book.setQualificationScore(5);
+        assertEquals(true,Book.isAbletofinishwithHonors());
+
     }
 }
