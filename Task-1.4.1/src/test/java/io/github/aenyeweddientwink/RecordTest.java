@@ -21,7 +21,10 @@ public class RecordTest {
 
     @Test void RecordTest1(){
         Record Record1 = new Record("Math", "Petrov",5,1);
+        int p1 = Record1.semester;
+        p1 = 2;
         assertEquals(5,Record1.getMark());
+        assertEquals(1,Record1.semester);
         assertEquals(1,Record1.getSemester());
     }
     @Test void RecordBookTest1(){

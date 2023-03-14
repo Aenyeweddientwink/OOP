@@ -18,7 +18,7 @@ public class Record {
     private final String subject;
     private final String teacher;
     private int mark;
-    private final int semester;
+    public final int semester;
     private final Credit credit;
 
     /**
