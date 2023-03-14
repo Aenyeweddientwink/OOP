@@ -1,5 +1,8 @@
 package io.github.aenyeweddientwink;
 
+import java.util.Comparator;
+import java.util.Objects;
+
 /**
  * Record class has attributes:
  * name of the subject
@@ -14,12 +17,19 @@ package io.github.aenyeweddientwink;
  *  FAILED means that subject was failed
  *  SCORED means that subject is not a credit but a scored mark
  */
-public class Record {
-    private final String subject;
+public class Record implements Comparable<Record>{
+    private String subject;
     private final String teacher;
     private int mark;
-    public final int semester;
+    private int semester;
     private final Credit credit;
+
+    /**
+     *  pass or fail type of score called CREDIT
+     */
+    public enum Credit{
+        PASSED, FAILED, SCORED
+    }
 
     /**
      * constructor of a Record
@@ -28,7 +38,7 @@ public class Record {
      * @param mark
      * @param semester
      */
-    public Record(String subject, String teacher, int mark, int semester){
+    public Record(String subject, String teacher, int mark, int semester) {
         this.subject = subject;
         this.teacher = teacher;
         this.mark = mark;
@@ -54,6 +64,7 @@ public class Record {
         return this.semester;
     }
 
+
     public int getMark() throws NullPointerException{
         if (this.credit != Credit.SCORED){
             throw new NullPointerException("this is a credit, not a mark");
@@ -72,11 +83,22 @@ public class Record {
     public Credit getCredit(){
         return this.credit;
     }
-    /**
-     *  pass or fail type of score called CREDIT
-     */
-    public enum Credit{
-        PASSED, FAILED, SCORED
+    @Override
+    public int compareTo(Record record1){
+        if (semester == record1.getSemester()){
+            return 0;
+        }
+        else {
+            if (semester > record1.getSemester()) {
+                return -1;
+            }
+            else{
+                return 1;
+            }
+        }
     }
 
+
+
 }
+

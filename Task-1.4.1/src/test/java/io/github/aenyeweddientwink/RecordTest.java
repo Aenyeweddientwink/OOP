@@ -21,10 +21,10 @@ public class RecordTest {
 
     @Test void RecordTest1(){
         Record Record1 = new Record("Math", "Petrov",5,1);
-        int p1 = Record1.semester;
+        int p1 = Record1.getSemester();
         p1 = 2;
         assertEquals(5,Record1.getMark());
-        assertEquals(1,Record1.semester);
+        assertEquals(1,Record1.getSemester());
         assertEquals(1,Record1.getSemester());
     }
     @Test void RecordBookTest1(){
@@ -67,8 +67,9 @@ public class RecordTest {
         RecordBook Book = new RecordBook("Timur","Ivanov",1);
 
         Book.addRecord("Math","Ivanov",4,1);
-        Book.changeSemester(2);
         Book.addRecord("Math","Ivanov",5,2);
+        Book.changeSemester(2);
+
         Book.addRecord("PE","Ivanov", Record.Credit.PASSED,2);
         Book.addRecord("IT","Petrov",4,2);
         Book.changeSemester(3);
