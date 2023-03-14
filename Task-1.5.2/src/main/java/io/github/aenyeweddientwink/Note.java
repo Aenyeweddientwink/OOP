@@ -30,12 +30,7 @@ public class Note {
         this.text = text;
         this.timestamp = timestamp;
     }
-
-    @Override
-    public String toString(){
-        return (timestamp + " " + this.title + " " + this.text + "\n");
-    }
-
+    
     public String getTitle(){
         return (this.title);
     }
