@@ -32,13 +32,14 @@ public class SubstringLooker {
 
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(in, StandardCharsets.UTF_8));
+        //zfunction of substring
         int[] zline = zfunction(substring.toCharArray(),substring.toCharArray(), new int [len], len);
         int pos = max(len, 512);
         char[] current = new char[pos];
         int offset = 0;
         int f = reader.read(current, offset, pos);
+        //zfunction of a piece of text
         int[] zz = zfunction(current, substring.toCharArray(), zline, f);
-
         List<Integer> indexes = new ArrayList<>();
         int cnt = 0;
         for (int i = 0; i < zz.length; i++) {
