@@ -1,0 +1,60 @@
+package io.github.aenyeweddientwink;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.util.StringUtils;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+/**
+ * This class is tests for a SubstringLooker class
+ */
+public class SubstringLookerTest {
+
+    @Test
+    public void exceptionTest() {
+        String path = "/Test1.txt";
+        assertThrows(NullPointerException.class, () -> SubstringLooker.search(null, SubstringLooker.class.getResourceAsStream(path)));
+        assertThrows(NullPointerException.class, () -> SubstringLooker.search("Hi", null));
+    }
+
+    @Test
+    public void test2() throws IOException {
+        String path = "/Test2.txt";
+        InputStream in = SubstringLooker.class.getResourceAsStream(path);
+        List<Integer> indexes = SubstringLooker.search("abc", in);
+        List<Integer> test = List.of(0,5,10);
+        assertEquals(3, indexes.size());
+        assertEquals(test, indexes);
+        in.close();
+        InputStream in2 = in;
+        assertThrows(IOException.class, () -> SubstringLooker.search("dreams", in2));
+    }
+
+    @Test
+    public void test3() throws IOException{
+        String path = "/Test3.txt";
+        InputStream in = SubstringLooker.class.getResourceAsStream(path);
+        List<Integer> indexes = SubstringLooker.search("kjhfqp", in);
+        List<Integer> test = List.of(9,53,59,109);
+        assertEquals(test, indexes);
+        in.close();
+    }
+
+    @Test
+    public void test4() throws IOException{
+        String path = "/Test4.txt";
+        InputStream in = SubstringLooker.class.getResourceAsStream(path);
+        List<Integer> indexes = SubstringLooker.search("fieow", in);
+        assertEquals(5,indexes.size());
+        List<Integer> test = List.of(231,560,889,1218,1547);
+        assertEquals(test, indexes);
+        in.close();
+    }
+
+}
